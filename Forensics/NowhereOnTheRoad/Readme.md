@@ -1,8 +1,6 @@
 # 🛣️ Nowhere on the Road — CTF Writeup
 
 **Category:** Forensics / Steganography  
-**Points:** 750  
-**Author:** R0z4r1y0  
 
 ---
 
