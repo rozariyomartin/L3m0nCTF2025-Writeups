@@ -4,7 +4,7 @@
 
 ### Given in the challenge
 
-File: ``challenge_color_random.png``
+File: [](challenge_color_random.png)
 
 Clue:
 
