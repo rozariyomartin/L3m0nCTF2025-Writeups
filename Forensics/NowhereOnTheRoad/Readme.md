@@ -53,7 +53,7 @@ Below will be the FFT of the image given
 
 <img width="701" height="731" alt="image" src="https://github.com/user-attachments/assets/1b3e8c47-4a35-4c0e-ad45-99ec8399c8d1" />
 
-## 👁️ Observation
+## Observation
 
 In the FFT magnitude spectrum:
 
@@ -64,7 +64,7 @@ In the FFT magnitude spectrum:
 
 This confirms that the flag is embedded **in frequency space**, not pixel space.
 
-## 🏁 Flag
+## Flag
 
 L3m0nCTF{77T_mu5t_b3_t4k3n_4_c0nc3rn}
 
