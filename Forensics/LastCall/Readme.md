@@ -4,6 +4,8 @@
 
 ### Overview
 
+Files given : [mystery_call.wav](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LastCall/mystery_call.wav)
+
 We are given a single audio file, mystery_call.wav.
 
 The audio contains nothing except a sequence of repetitive electronic tones.
