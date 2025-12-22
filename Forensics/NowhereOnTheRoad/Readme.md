@@ -2,11 +2,9 @@
 
 **Category:** Forensics / Steganography  
 
----
-
 <img width="442" height="601" alt="image" src="https://github.com/user-attachments/assets/0eb91bd4-a8ed-4f90-8f8d-56ba6b09dc2b" />
 
----
+Files : [mike.png]()
 
 ## Initial Analysis
 
@@ -24,8 +22,6 @@ The line
 
 confirms that the information exists, but **not in a directly observable form**.
 
----
-
 ## Key Insight
 
 If an image contains information that:
@@ -39,8 +35,6 @@ A standard representation of images beyond pixels is the **frequency domain**.
 
 This makes frequency analysis a justified next step.
 
----
-
 ## Frequency Domain Analysis
 
 Steps performed:
@@ -50,8 +44,6 @@ Steps performed:
 3. Shift the zero-frequency component to the center  
 4. Visualize the magnitude spectrum using log scaling  
 
----
-
 ## Steps
 I used a application named ImageJ ,to get the FFT of the image
 
@@ -60,8 +52,6 @@ In that application load  the file and go to Process->FFT->FFT you will get your
 Below will be the FFT of the image given
 
 <img width="701" height="731" alt="image" src="https://github.com/user-attachments/assets/1b3e8c47-4a35-4c0e-ad45-99ec8399c8d1" />
-
----
 
 ## 👁️ Observation
 
@@ -73,8 +63,6 @@ In the FFT magnitude spectrum:
 - The road image acts purely as a carrier
 
 This confirms that the flag is embedded **in frequency space**, not pixel space.
-
----
 
 ## 🏁 Flag
 
