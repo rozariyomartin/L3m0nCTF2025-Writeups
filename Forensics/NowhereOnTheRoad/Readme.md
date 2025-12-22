@@ -4,9 +4,10 @@
 
 <img width="442" height="601" alt="image" src="https://github.com/user-attachments/assets/0eb91bd4-a8ed-4f90-8f8d-56ba6b09dc2b" />
 
-Files : [mike.png](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/NowhereOnTheRoad/mike.png)
 
 ## Initial Analysis
+
+Files : [NowWhereOnTheTheRoad.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/NowhereOnTheRoad/NowWhereOnTheTheRoad.tar.gz)
 
 The problem statement explicitly rules out common approaches:
 
