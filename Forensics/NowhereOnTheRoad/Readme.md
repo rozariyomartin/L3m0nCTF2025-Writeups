@@ -1,4 +1,4 @@
-# 🛣️ Nowhere on the Road — CTF Writeup
+# Nowhere on the Road — CTF Writeup
 
 **Category:** Forensics / Steganography  
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 🔍 Initial Analysis
+## Initial Analysis
 
 The problem statement explicitly rules out common approaches:
 
@@ -26,7 +26,7 @@ confirms that the information exists, but **not in a directly observable form**.
 
 ---
 
-## 🧠 Key Insight
+## Key Insight
 
 If an image contains information that:
 - Is invisible,
@@ -41,7 +41,7 @@ This makes frequency analysis a justified next step.
 
 ---
 
-## 🧪 Frequency Domain Analysis
+## Frequency Domain Analysis
 
 Steps performed:
 
@@ -83,7 +83,7 @@ L3m0nCTF{77T_mu5t_b3_t4k3n_4_c0nc3rn}
 
 ---
 
-## 🧩 Conclusion
+## Conclusion
 
 This challenge is not about finding something hidden *on* the image —  
 it is about looking at the image in the **correct domain**.
