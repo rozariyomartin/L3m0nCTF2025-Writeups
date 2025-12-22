@@ -110,7 +110,7 @@ For each channel independently:
 5.Convert duration to bits
 
 The extraction logic is implemented in a helper script
-![extract_bits.py](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LastCall/extract_bits.py)
+[extract_bits.py](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LastCall/extract_bits.py)
 
 Running this script produces two binary streams:
 
