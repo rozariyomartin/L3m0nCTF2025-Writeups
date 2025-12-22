@@ -4,7 +4,7 @@
 
 ### Given in the challenge
 
-File: [challenge_color_random.png](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LostSignal/LostSignal.tar.gz)
+File: [lost_signal.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LostSignal/lost_signal.tar.gz)
 
 Clue:
 
