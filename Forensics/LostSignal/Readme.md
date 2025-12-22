@@ -4,7 +4,7 @@
 
 ### Given in the challenge
 
-File: [](challenge_color_random.png)
+File: [challenge_color_random.png](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LostSignal/challenge_color_random.png)
 
 Clue:
 
