@@ -23,7 +23,9 @@ This immediately suggests the content is not meant to be read directly.
 
 A `.docx` file is actually a ZIP archive, so we extract it:
 
-`unzip whiteletter.docx -d whiteletter`
+```
+unzip whiteletter.docx -d whiteletter
+```
 
 Inside, we inspect the Word XML files. The footer is a common hiding place:
 
@@ -39,7 +41,9 @@ Since nothing visible stands out, the next step is to look for **invisible or no
 
 We search for zero-width Unicode characters:
 
-`grep -P "[\x{200C}\x{200D}]" footer.xml`
+```
+grep -P "[\x{200C}\x{200D}]" footer.xml
+```
 
 <img width="1895" height="247" alt="image" src="https://github.com/user-attachments/assets/17f2887e-47f5-4e85-8646-b14f7763b89f" />
 
@@ -47,11 +51,14 @@ Nothing visible is printed, but output exists — meaning invisible characters a
 
 We extract only those characters:
 
-`grep -oP "[\x{200C}\x{200D}]" footer.xml > zw.txt`
+```
+grep -oP "[\x{200C}\x{200D}]" footer.xml > zw.txt
+```
 
 A quick hex dump confirms they are real:
 
-`xxd zw.txt | head`
+```xxd zw.txt | head
+```
 
 <img width="573" height="206" alt="image" src="https://github.com/user-attachments/assets/d95229d9-059c-46a3-83a2-047d2c455b69" />
 
@@ -92,7 +99,9 @@ EOF
 
 Output:
 
-``morseindocx``
+```
+morseindocx
+```
 
 This is clearly a password.
 
@@ -102,7 +111,9 @@ If you tried to crack the zip using john using rockyou wordlist you wont be able
 
 Using the recovered password:
 
-``unzip evidence.zip``
+```
+unzip evidence.zip
+```
 
 Password:
 
@@ -133,7 +144,9 @@ This does not look random — it looks constructed.
 
 Extracting the fragment:
 
-``tdn01s3s1gn4l``
+```
+tdn01s3s1gn4l
+```
 
 This becomes the 3rd **fragment**.
 
@@ -149,13 +162,17 @@ One HTTP request contains a custom header:
 
 This gives us the password:
 
-``inspectnext``
+```
+inspectnext
+```
 
 ### Step 7 — Steganography (img002.jpg)
 
 Using the recovered password:
 
-``steghide extract -sf img002.jpg -p inspectnext``
+```
+steghide extract -sf img002.jpg -p inspectnext
+```
 
 <img width="414" height="63" alt="image" src="https://github.com/user-attachments/assets/8329284d-7902-4868-be45-5861eaa81ed8" />
 
@@ -165,7 +182,9 @@ fragment2.txt
 
 **Contents:**
 
-``tt3r_1nsp3c``
+```
+tt3r_1nsp3c
+```
 
 ### Step 8 — Log File Analysis (massive_server.log)
 
@@ -294,7 +313,9 @@ can you see this 28h3JkhN8IVHxjDI4R8F5R
 
 So find the encoding in Dcode's Cipher Identifier and you can find its Base62 encoded. So decoing it gives,
 
-``FRAG4: s_l0gg3d}``
+```
+FRAG4: s_l0gg3d}
+```
 
 ### Step 9 - Checking the ``archive_2021.bin`` file
 
@@ -302,7 +323,9 @@ We can get the first part of the flag on the initial analysis even using strings
 
 <img width="352" height="56" alt="image" src="https://github.com/user-attachments/assets/31eee171-1e31-43a5-9af9-6c97c4b26441" />
 
-``L3m0nCTF{wh1t3l3``
+```
+L3m0nCTF{wh1t3l3
+```
 
 On reconstructing it fully we get the flag.
 
