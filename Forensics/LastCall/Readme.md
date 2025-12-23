@@ -68,8 +68,8 @@ So, we separate the channels.
 sox mystery_call.wav left.wav  remix 1
 ```
 
-``
-`sox mystery_call.wav right.wav remix 2
+```
+sox mystery_call.wav right.wav remix 2
 ```
 
 Now we have:
