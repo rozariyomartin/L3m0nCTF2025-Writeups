@@ -19,7 +19,9 @@ The goal is to determine **what information is hidden inside these tones**.
 
 We begin by checking the file type.
 
-`file mystery_call.wav`
+```
+file mystery_call.wav
+```
 
 <img width="782" height="110" alt="image" src="https://github.com/user-attachments/assets/9ee78a35-93aa-476c-bb32-541458e8ac29" />
 
@@ -35,7 +37,9 @@ This is important — the file has two channels, not one.
 
 Since the tones resemble telephone signals, we try a standard DTMF decoder.
 
-`multimon-ng -a DTMF -t wav mystery_call.wav`
+```
+multimon-ng -a DTMF -t wav mystery_call.wav
+```
 
 <img width="1868" height="384" alt="image" src="https://github.com/user-attachments/assets/bc65c082-1dae-41da-b295-1ee9903821f6" />
 
@@ -60,9 +64,13 @@ On opening this file in audacity we can see that both left channel and right cha
 
 So, we separate the channels.
 
-`sox mystery_call.wav left.wav  remix 1`
+```
+sox mystery_call.wav left.wav  remix 1
+```
 
-`sox mystery_call.wav right.wav remix 2`
+``
+`sox mystery_call.wav right.wav remix 2
+```
 
 Now we have:
 
