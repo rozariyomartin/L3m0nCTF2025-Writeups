@@ -161,7 +161,6 @@ def extract_bits(wav):
 
     return ''.join(bits)
 
-# ===================== SOLVE =====================
 left  = extract_bits("left.wav")
 right = extract_bits("right.wav")
 print("[LEFT bits]")
