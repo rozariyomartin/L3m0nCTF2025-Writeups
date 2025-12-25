@@ -13,7 +13,7 @@ The Total Bill amount found in the evidence.
 
 Flag Format: L3m0nCTF{BSSID_TOTALBILL}
 
-**Authors** : R0z4riy0 & akvnn
+**Authors** : R0z4riy0 & [akvnn](https://github.com/Akashvarunn14)
 
 ---
 
