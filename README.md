@@ -15,3 +15,7 @@ This repository contains **post-event analyses** of challenges
 - OSINT breadcrumb construction
 
 ⚠️ All content is published after the competition concluded.
+
+This repository reflects my approach to designing fair,
+non-guessy, analysis-driven CTF challenges.
+
