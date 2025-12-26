@@ -1,11 +1,27 @@
-# Nowhere on the Road — CTF Writeup
+# Challenge Overview: Nowhere on the Road
 
 **Category:** Forensics / Steganography  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author 
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended analysis path**.
+
+## Intended Analysis Path
+
+The challenge was designed to test:
+- recognition of when spatial-domain analysis is insufficient
+- rejection of metadata and pixel-based assumptions
+- understanding that images can carry information in non-spatial domains
+- familiarity with frequency-domain representations of images
+
+All visible and file-level inspection techniques were intentionally ineffective.
 
 <img width="442" height="601" alt="image" src="https://github.com/user-attachments/assets/0eb91bd4-a8ed-4f90-8f8d-56ba6b09dc2b" />
 
 
-## Initial Analysis
+## Analysis Phase 1 — Eliminating Spatial-Domain Techniques
 
 Files : [NowWhereOnTheTheRoad.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/NowhereOnTheRoad/NowWhereOnTheTheRoad.tar.gz)
 
@@ -23,7 +39,7 @@ The line
 
 confirms that the information exists, but **not in a directly observable form**.
 
-## Key Insight
+## Analysis Phase 2 — Identifying the Correct Domain
 
 If an image contains information that:
 - Is invisible,
@@ -36,7 +52,7 @@ A standard representation of images beyond pixels is the **frequency domain**.
 
 This makes frequency analysis a justified next step.
 
-## Frequency Domain Analysis
+## Analysis Phase 3 — Frequency-Space Inspection
 
 Steps performed:
 
@@ -45,16 +61,16 @@ Steps performed:
 3. Shift the zero-frequency component to the center  
 4. Visualize the magnitude spectrum using log scaling  
 
-## Steps
-I used a application named ImageJ ,to get the FFT of the image
+## Analysis Phase 4 — FFT Visualization
+The frequency-domain representation was visualized using an external FFT tool (ImageJ).
 
 In that application load  the file and go to Process->FFT->FFT you will get your FFT image where the flag is present.
 
-Below will be the FFT of the image given
+The resulting FFT magnitude spectrum reveals the embedded information.
 
 <img width="701" height="731" alt="image" src="https://github.com/user-attachments/assets/1b3e8c47-4a35-4c0e-ad45-99ec8399c8d1" />
 
-## Observation
+## Analysis Phase 5 — Interpreting the Frequency Artifacts
 
 In the FFT magnitude spectrum:
 
@@ -65,7 +81,7 @@ In the FFT magnitude spectrum:
 
 This confirms that the flag is embedded **in frequency space**, not pixel space.
 
-## Flag
+## Final Output
 
 L3m0nCTF{77T_mu5t_b3_t4k3n_4_c0nc3rn}
 
