@@ -1,8 +1,27 @@
-## Lost Signal — Full WriteUp
+# Challenge Overview: Lost Signal
+
+**Category:** Forensics  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended forensic analysis path**.
 
 <img width="437" height="601" alt="image" src="https://github.com/user-attachments/assets/53b2e3dd-171d-492a-9bee-0c5d35a25ea4" />
 
-### Given in the challenge
+## Intended Analysis Path
+
+The challenge was designed to test:
+- interpretation of a provided seed as an ordering mechanism
+- rejection of traditional steganography tools in favor of programmatic analysis
+- pixel-level manipulation rather than file-level extraction
+- reconstruction of shuffled data using deterministic randomness
+- multi-bitplane extraction guided by a controlled permutation
+
+Without applying the seed correctly, all extracted data appears as noise.
+
+## Evidence Provided
 
 File: [lost_signal.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LostSignal/lost_signal.tar.gz)
 
@@ -12,7 +31,7 @@ Clue:
 
 No other hints.
 
-### Step 1: Understand what the seed implies
+## Analysis Phase 1 — Interpreting the Seed
 
 The challenge explicitly provides a **seed**.
 
@@ -34,7 +53,7 @@ The only reasonable conclusion is:
 
 The seed defines an **order of pixels**, not bytes or files.
 
-### Step 2: Work at pixel level (not StegSolve)
+## Analysis Phase 2 — Pixel-Level Analysis
 
 StegSolve fails because:
 
@@ -46,7 +65,7 @@ So you must:
 - Load the image programmatically
 - Treat it as a pixel array
 
-### Step 3: Separate brightness from color
+## Analysis Phase 3 — Isolating the Luminance Channel
 
 RGB mixes color and brightness.
 
@@ -73,7 +92,7 @@ print("Y channel extracted:", Y_arr.shape)
 EOF
 ```
 
-### Step 4: Recreate the permutation using the seed
+## Analysis Phase 4 — Reconstructing the Permutation
 
 The seed must recreate the exact pixel order used during embedding.
 
@@ -98,7 +117,7 @@ EOF
 
 Now indices represents the correct pixel visit order.
 
-### Step 5: Extract hidden bits correctly
+## Analysis Phase 5 — Controlled Bitplane Extraction
 
 A simple LSB dump fails, which means:
 
@@ -150,7 +169,7 @@ Without:
 
 the output is pure noise.
 
-### Step 6: Rebuild the hidden image
+## Final Output
 
 The recovered bitstream must be reshaped back into an image.
 
@@ -177,7 +196,7 @@ EOF
 
 The QR will be generated.
 
-Now you just scan the qr you will get the flag.
+Scanning the reconstructed QR code reveals the final flag.
 
 <img width="1499" height="876" alt="image" src="https://github.com/user-attachments/assets/0de87e6e-6cd4-4149-8b7a-ec253324bcb5" />
 
