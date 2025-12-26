@@ -1,18 +1,17 @@
-# L3m0nCTF 2025 – Authored Challenges (Forensics, Cryptography and OSINT)
+# L3m0nCTF 2025 — Authored Challenges
 
-This repository contains **post-event walkthroughs** for challenges  
+This repository contains **post-event analyses** of challenges
 **authored by me** for **L3m0nCTF 2025**.
 
-## Scope
-- Categories: Forensics, Cryptography
-- Role: Challenge Author
-- Content: Intended analysis & solution path
+## Categories
+- 🕵️ Forensics
+- 🔐 Cryptography
+- 🌐 OSINT
 
-## Disclosure
-All explanations are published **after the competition concluded**  
-and are intended **strictly for educational purposes**.
+## What this shows
+- Intentional challenge design
+- Multi-layer forensic reasoning
+- Cryptographic structure analysis
+- OSINT breadcrumb construction
 
-## Author
-Rozariyo Martin  
-🌐 https://rozariyomartin.me  
-🐙 https://github.com/rozariyomartin
+⚠️ All content is published after the competition concluded.
