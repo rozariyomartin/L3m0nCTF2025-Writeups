@@ -1,12 +1,32 @@
-# Layers of Trust — CTF Writeup
+# Challenge Overview: Layers of Trust
+
+**Category:** Forensics / Cryptography  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author
 
 **Category:** Forensics / Crypto  
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended multi-layer analysis path**.
 
 ---
 
 <img width="651" height="619" alt="image" src="https://github.com/user-attachments/assets/2171bf59-6f5c-4430-b78e-1d4c777d7179" />
 
-## Initial Analysis
+## Intended Analysis Path
+
+The challenge was designed to test:
+- recognition of email containers as structured forensic artifacts
+- inspection of MIME nesting rather than surface content
+- correlation of metadata across unrelated formats
+- cryptographic key derivation from contextual email data
+- separation of decoy encryption from the true trust chain
+
+Attempting to decrypt the PGP content directly without reconstructing
+the trust layers was intentionally ineffective.
+
+## Analysis Phase 1 — Establishing the Investigation Scope
 
 The challenge explicitly mentions:
 
@@ -19,9 +39,9 @@ The challenge explicitly mentions:
 This indicates the challenge is **not solved by reading the email body alone**.  
 Instead, the solver must inspect the **email container itself**.
 
-The correct first step is to analyze the `.eml` file as a MIME object.
+The investigation begins by treating the `.eml` file as a structured MIME container.
 
-## Step 1: Inspect Email Structure
+## Analysis Phase 2 — Email Container Inspection
 
 `file mysterious_mail.eml`
 
@@ -40,7 +60,7 @@ We observe:
 
 This confirms that the email structure itself is important.
 
-## Step 2 — Extract the Inner Email
+## Analysis Phase 3 — Nested Email Extraction
 
 Scrolling through the file reveals a ``message/rfc822`` section.
 
@@ -66,7 +86,7 @@ Date: Thu, 20 Nov 2025 13:00:00 +0530
 
 The body of this email explicitly defines the cryptographic logic used to derive the decryption key.
 
-## Step 3 — Extract and Analyze the Logo Image
+## Analysis Phase 4 — Metadata-Based Key Material Discovery
 
 The outer email embeds an image (``logo.png``) as base64.
 
@@ -96,7 +116,7 @@ Copyright         : salt=7f3c8a21b4d9e012f3a5c9de7e12ab77
 
 These values clearly correspond to **Argon2id parameters**.
 
-## Step 4 — Reconstruct the Base Secret
+## Analysis Phase 5 — Base Secret Reconstruction
 
 From the inner email instructions, the base secret is defined as:
 
@@ -126,7 +146,7 @@ Final base secret format:
 admin@example.com|confidentialnotes|1763623800
 ```
 
- ## Step 5 — Derive the PGP Passphrase
+## Analysis Phase 6 — Cryptographic Key Derivation
 
  Using the extracted Argon2 parameters and base secret:
 
@@ -153,7 +173,7 @@ print(passphrase)
 
 The result is the **correct PGP passphrase**.
 
-## Step 6 — Decrypt the Inner PGP Message
+## Final Output
 
 From ``inner.eml``, extract the PGP block and save it.
 
