@@ -1,8 +1,27 @@
-## The Cicada Archives — Full Writeup
+# Challenge Overview: The Cicada Archives
+
+**Category:** Forensics  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended multi-layer forensic analysis path**.
 
 <img width="433" height="706" alt="image" src="https://github.com/user-attachments/assets/7fe49c38-293f-474f-8592-37be08a34f96" />
 
-Overview
+## Intended Analysis Path
+
+The challenge was designed to test:
+- recognition of document formats as structured containers
+- detection of invisible data embedded in normal-looking files
+- correlation of unrelated forensic artifacts across multiple layers
+- reduction of large noisy datasets to isolate anomalies
+- reconstruction of a fragmented narrative from subtle clues
+
+Direct or surface-level inspection of any single file was intentionally insufficient.
+
+## Analysis Phase 1 — Establishing the Scope
 
 We are given a single archive [TheCicadaArchives.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/TheCicadaArchives/TheCicadaArchives.tar.gz) containing three files:
 
@@ -16,7 +35,7 @@ evidence.zip
 At first glance, everything looks ordinary. No obvious corruption, no visible clues, no readable flags.
 This challenge is about looking past what’s visible, and understanding that data can be hidden inside structure, noise, and normality.
 
-### Step 1 — Inspecting whiteletter.docx
+## Analysis Phase 2 — Document Container Inspection
 
 Opening the document normally reveals nothing interesting — just plain text.
 This immediately suggests the content is not meant to be read directly.
@@ -35,7 +54,7 @@ Inside, we inspect the Word XML files. The footer is a common hiding place:
 
 Reading it visually still shows nothing suspicious.
 
-### Step 2 — Detecting Invisible Characters
+## Analysis Phase 3 — Hidden Unicode Signal Extraction
 
 Since nothing visible stands out, the next step is to look for **invisible or non-ASCII characters**.
 
@@ -67,7 +86,7 @@ We see repeating patterns of:
 - e2 80 8c → U+200C
 - e2 80 8d → U+200D
 
-### Step 3 — Decoding the Hidden Message
+## Analysis Phase 4 — Zero-Width Character Decoding
 
 These two characters can naturally represent binary:
 
@@ -105,9 +124,9 @@ morseindocx
 
 This is clearly a password.
 
-If you tried to crack the zip using john using rockyou wordlist you wont be able to crack it because the password is not in that wordlist.
+Brute-force attempts using common wordlists were intentionally ineffective.
 
-### Step 4 — Opening evidence.zip
+## Analysis Phase 5 — Password-Protected Artifact Recovery
 
 Using the recovered password:
 
@@ -121,7 +140,7 @@ Password:
 
 The archive extracts several files
 
-### Step 5 — Network Traffic Analysis (capture.pcap)
+## Analysis Phase 6 — Network Traffic Correlation
 
 Opening the capture in Wireshark shows heavy, realistic traffic:
 
@@ -150,7 +169,7 @@ tdn01s3s1gn4l
 
 This becomes the 3rd **fragment**.
 
-### Step 6 — Finding other hints in the PCAP
+## Analysis Phase 7 — Secondary Signal Discovery
 
 Still in the PCAP, we inspect HTTP traffic.
 
@@ -166,7 +185,7 @@ This gives us the password:
 inspectnext
 ```
 
-### Step 7 — Steganography (img002.jpg)
+## Analysis Phase 8 — Image-Based Data Extraction
 
 Using the recovered password:
 
@@ -186,7 +205,7 @@ fragment2.txt
 tt3r_1nsp3c
 ```
 
-### Step 8 — Log File Analysis (massive_server.log)
+## Analysis Phase 9 — Large-Scale Log Reduction
 
 #### 1.Initial Analysis
 We are provided with a file named massive_server.log. A quick check using ls -lh reveals the file is quite large (approx. 150MB+), containing over 1 million lines.
@@ -311,13 +330,13 @@ The anomaly contained the hidden message:
 
 can you see this 28h3JkhN8IVHxjDI4R8F5R
 
-So find the encoding in Dcode's Cipher Identifier and you can find its Base62 encoded. So decoing it gives,
+The encoded fragment can be identified as Base62 and decoded accordingly.
 
 ```
 FRAG4: s_l0gg3d}
 ```
 
-### Step 9 - Checking the ``archive_2021.bin`` file
+## Analysis Phase 10 — Fragment Reassembly
 
 We can get the first part of the flag on the initial analysis even using strings,
 
