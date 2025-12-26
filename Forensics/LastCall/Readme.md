@@ -1,8 +1,26 @@
-## Challenge Write-Up — Mystery Call
+# Challenge Overview: Mystery Call
+
+**Category:** Forensics  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended forensic analysis path**.
 
 <img width="445" height="676" alt="image" src="https://github.com/user-attachments/assets/1ea56118-63d8-44a4-a851-3da8766684cb" />
 
-### Overview
+## Intended Analysis Path
+
+The challenge was designed to test:
+- recognition of signaling methods beyond direct decoding
+- understanding that DTMF symbols may act as carriers, not data
+- analysis of temporal properties rather than frequency content
+- multi-channel signal combination to remove decoy information
+
+Single-channel or direct decoding approaches were intentionally misleading.
+
+## Overview
 
 Files given : [mystery_call.tar.gz](https://github.com/rozariyomartin/L3m0nCTF2025-Writeups/blob/main/Forensics/LastCall/mystery_call.wav)
 
@@ -15,7 +33,7 @@ At first listen, the tones resemble telephone beeps, but decoding them directly 
 
 The goal is to determine **what information is hidden inside these tones**.
 
-### Step 1: File Inspection
+## Analysis Phase 1 — Initial File Inspection
 
 We begin by checking the file type.
 
@@ -33,7 +51,7 @@ The output confirms:
 
 This is important — the file has two channels, not one.
 
-### Step 2: Initial Decoding Attempt
+## Analysis Phase 2 — Eliminating Direct DTMF Decoding
 
 Since the tones resemble telephone signals, we try a standard DTMF decoder.
 
@@ -56,7 +74,7 @@ This tells us something important:
 
 **The decoded DTMF symbols themselves are not the message.**
 
-### Step 3: Channel Separation
+## Analysis Phase 3 — Channel-Level Inspection
 
 On opening this file in audacity we can see that both left channel and right channel doesnt resemble same  sound.
 
@@ -86,7 +104,7 @@ So:
 - The message is **not** stored in a single channel
 - The channels must be **used together**
 
-### Step 4: Observing the Real Signal Property
+## Analysis Phase 4 — Identifying the True Signal Property
 
 When visualizing the waveform or spectrogram, one key detail stands out:
 
@@ -105,7 +123,7 @@ We treat:
 - Short tone → 0
 - Long tone → 1
 
-### Step 5: Extracting Binary From Each Channel
+## Analysis Phase 5 — Binary Extraction via Temporal Analysis
 
 For each channel independently:
 
@@ -192,7 +210,7 @@ This produces two binary strings:
 
 Neither stream alone forms valid ASCII.
 
-### Step 6: Channel Combination
+## Analysis Phase 6 — Channel Combination via XOR
 
 Because both channels are synchronized and neither decodes meaningfully by itself, the next step is to **combine them.**
 
@@ -204,7 +222,7 @@ This operation removes the decoy structure present in each channel individually 
 
 The XOR and decoding process is handled by the that code even:
 
-### Step 7: Binary to ASCII
+## Final Output
 
 The resulting binary stream is grouped into 8-bit chunks and converted to ASCII.
 
