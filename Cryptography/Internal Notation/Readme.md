@@ -1,4 +1,17 @@
-# Challenge Write-Up: Internal Notation
+# Challenge Overview: Internal Notation
+
+**Category:** Cryptography  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author
+
+> 🛠️ **Author Note**  
+> This challenge was authored by me for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended analysis path**.
+
+## Intended Analysis Path
+The challenge required identifying the cryptographic primitive in use,
+correctly interpreting the provided parameters, and avoiding brute-force
+approaches in favor of structural analysis.
 
 ## Problem
 
@@ -92,7 +105,10 @@ No plugboard connections
 
 ### Step 3 — Decrypting the Message
 
-I used **cryptii** to decode it
+The configuration was applied using an online Enigma simulator (Cryptii)
+to validate the reconstructed machine state.
+
+The simulator output confirms the correctness of the reconstructed configuration.
 
 <img width="1824" height="840" alt="image" src="https://github.com/user-attachments/assets/73eba7c5-8d2e-4f0a-9bb3-1cf8b81423a8" />
 
