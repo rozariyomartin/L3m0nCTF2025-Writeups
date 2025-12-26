@@ -1,4 +1,25 @@
-# Challenge Writeup : Hotel Bagavathi
+# Challenge Overview: Hotel Bagavathi
+
+**Category:** OSINT  
+**Event:** L3m0nCTF 2025  
+**Role:** Challenge Author  
+
+**Authors:** R0z4riy0 & akvnn
+
+> 🛠️ **Author Note**  
+> This challenge was authored by us for **L3m0nCTF 2025**.  
+> The following explanation describes the **intended OSINT investigation path**.
+
+## Intended Analysis Path
+
+The challenge was designed to test:
+- cross-platform OSINT correlation
+- recognition of indirect social media breadcrumbs
+- interpretation of entertainment media as contextual clues
+- extraction of technical metadata from public reviews
+- assembling unrelated information into a coherent narrative
+
+Brute-force searching or single-platform investigation was intentionally insufficient.
 
 ## Problem
 
@@ -17,9 +38,10 @@ Flag Format: L3m0nCTF{BSSID_TOTALBILL}
 
 ---
 
-### Step1 : Find the social media account
+## Analysis Phase 1 — Identifying the Initial Online Presence
 
-First find out all the social media apps which are popular and try to find the user account.
+The investigation begins by surveying commonly used social media platforms
+to identify the subject’s public online presence.
 
 We can find it on **VK**, it's a popular russian social media platform.
 
@@ -29,7 +51,7 @@ He had uploaded a post where the github link is present open it and it will redi
 
 <img width="1798" height="700" alt="image" src="https://github.com/user-attachments/assets/e364b962-5333-4fa8-ab8a-19c3e3bf494f" />
 
-### Step2 : Searching for any clues in github repositories
+## Analysis Phase 2 — Source Code Artifact Discovery
 
 Clone the repository and search for any keywords present in it
 
@@ -43,7 +65,7 @@ On decoding that in CyberChef i got a spotify link
 
 <img width="1521" height="559" alt="image" src="https://github.com/user-attachments/assets/89816884-6e65-4d77-b9f5-aab4dd366b86" />
 
-### Step3 : Finding clues in Spotify
+## Analysis Phase 3 — Indirect Identity Expansion
 
 If you search through the profile you can  find a playlist with a few songs
 
@@ -71,15 +93,16 @@ First we need to find where the shop is right.
 
 If you see the profile picture its a photo in the movie scene of **LEO** where he is in the cafe, if you watched the movie you could have easily guessed it's **Sifar Cafe**.
 
-If you didnt watch the movie though you can search it in google lens and you can find the scen and check where the movie was shot.
+The reference can also be verified using reverse image search
+to identify the filming location.
 
-### Step4 : Finding the Review
+## Analysis Phase 4 — Location & Network Metadata Correlation
 
 He mentioned in the image that he had reviewed one star for his shop. So now we need to search through the cafe review websites.
 
 One of the well known review websites is the **Tripadvisor**.
 
-[link]([link](https://www.tripadvisor.in/Restaurant_Review-g1891000-d24101216-Reviews-Sifar-Anantnag_Anantnag_District_Kashmir_Jammu_and_Kashmir.html))
+[link]((https://www.tripadvisor.in/Restaurant_Review-g1891000-d24101216-Reviews-Sifar-Anantnag_Anantnag_District_Kashmir_Jammu_and_Kashmir.html))
 
 So in it if you search for the cafe and when you check the reviews you can find this specific review which is kinda sus,
 
@@ -87,7 +110,7 @@ So in it if you search for the cafe and when you check the reviews you can find 
 
 Here you can see that the BSSID of the wifi is given here which is a part of the flag.
 
-### Step5 : Finding other clues
+## Analysis Phase 5 — Secondary Evidence Correlation
 
 Also, we can see that the profile is also kinda sus why is specifically given in alphanumericals which gives no meaning so on seaching it we can find that it is a **pastebin url**
 
