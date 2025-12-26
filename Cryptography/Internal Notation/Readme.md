@@ -31,7 +31,7 @@ Preserve word order exactly as recovered.
 
 ---
 
-### Step 1 — Identifying the Cipher Type
+## Analysis Phase 1 — Cipher Classification
 
 The ciphertext consists only of **uppercase alphabetic characters**, with:
 
@@ -47,7 +47,7 @@ These properties immediately rule out:
 
 This behavior is characteristic of a **rotor-based polyalphabetic cipher**, specifically an **Enigma-style machine**.
 
-### Step 2 — Understanding the Configuration Note
+## Analysis Phase 2 — Configuration Interpretation
 
 The provided configuration file is:
 
@@ -103,7 +103,7 @@ The empty set symbol clearly indicates:
 
 No plugboard connections
 
-### Step 3 — Decrypting the Message
+## Analysis Phase 3 — Configuration Validation
 
 The configuration was applied using an online Enigma simulator (Cryptii)
 to validate the reconstructed machine state.
